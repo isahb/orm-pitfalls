@@ -1,4 +1,4 @@
-package config;
+package com.javacents.ormpitfalls.config;
 
 import java.util.Properties;
 
