@@ -1,28 +1,31 @@
 package com.javacents.ormpitfalls.model;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-public class BusinessPartner {
-	@Id
-	@Column(length = 36)
-	private String id;
+import com.javacents.ormpitfalls.dao.PO;
+
+@Entity(name = "BUSINESS_PARTNER")
+public class BusinessPartner extends PO {
 	@Column(name = "name", length = 128, nullable = false)
 	private String name;
 	@Column(name = "fisc_no", length = 64, nullable = false)
 	private String fiscNo;
-	@Column(name = "city_id", length = 36, nullable = false)
+	@JoinColumn(name = "city_id", nullable = false)
+	@ManyToOne
 	private City city;
+
+	public BusinessPartner() {
+		super();
+	}
 
 	public BusinessPartner(String name, String fiscNo, City city) {
 		super();
 		this.name = name;
 		this.fiscNo = fiscNo;
 		this.city = city;
-	}
-
-	public String getId() {
-		return id;
 	}
 
 	public String getName() {
@@ -35,5 +38,10 @@ public class BusinessPartner {
 
 	public City getCity() {
 		return city;
+	}
+
+	@Override
+	public String toString() {
+		return "BusinessPartner [name=" + name + ", fiscNo=" + fiscNo + ", city=" + city + "]";
 	}
 }
