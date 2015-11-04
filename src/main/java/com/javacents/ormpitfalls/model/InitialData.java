@@ -57,10 +57,10 @@ public class InitialData {
 
 	public static void initializeTestData(AnnotationConfigApplicationContext context) {
 		CountryDao countryDao = context.getBean(CountryDao.class);
-		for (Country country : COUNTRIES) {
+		COUNTRIES.forEach(country -> {
 			if (countryDao.find(country.getName()) == null) {
 				countryDao.add(country);
 			}
-		}
+		});
 	}
 }

@@ -2,6 +2,7 @@ package com.javacents.ormpitfalls.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -12,7 +13,7 @@ public class City extends PO {
 	@Column(name = "name", nullable = false, length = 64)
 	private String name;
 	@JoinColumn(name = "country_id", nullable = false)
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Country country;
 
 	public City() {

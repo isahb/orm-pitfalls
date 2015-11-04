@@ -19,11 +19,20 @@ public class App {
 			InitialData.initializeTestData(context);
 			
 			CityDao cityDao = context.getBean(CityDao.class);
-			logger.trace("Naive query about to start...");
+			logger.trace("ORM Pitfall nr. 1: Naive query about to start...");
 			cityDao.getAllNaive();
 			
 			logger.trace("Improved query with fetches about to start...");
 			cityDao.getAllWithFetches();
+			
+			logger.trace("ORM Pitfall nr. 2 if country is set to LAZY in City");
+			cityDao.doSomethingWithCitiesAndTheirCountry();
+			
+			logger.trace("ORM Pitfall nr. 3 lazy cities in Country(default)");
+			cityDao.doSomethingWithCountriesAndTheirCities();
+			
+			logger.trace("ORM Pitfall nr. 3 lazy cities with fetch on first query");
+			cityDao.doSomethingWithCountriesAndTheirCitiesWithFetch();
 		}
 	}
 }
